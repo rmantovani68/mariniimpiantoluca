@@ -5,9 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 // Libreria per la gestione dei file XML. Permette di usare classi come XmlAttributeCollection, XmlNode, ...;
 using System.Xml;
-// Libreria per usare l'oggetto MethodInfo e tutti gli altri metodi reflection usati per accoppiare gli handlers con gli eventi
-using System.Reflection;
-
 
 namespace MariniImpiantoDataModel
 {
@@ -119,7 +116,7 @@ namespace MariniImpiantoDataModel
         private void _SubscribeEvents()
         {
             Console.WriteLine("\n\n\n========== INIZIO Sottoscrizione Eventi ==========");
-            //MethodInfo[] methods = mariniEventHandler.GetType().GetMethods();
+
             foreach (MariniGenericObject mgo in this._pathObjectsDictionary.Values)
             {
                 Console.WriteLine("\n\n\t-----> Oggetto Marini {0} chiede la sottoscrizione dell'handler {1}", mgo.path, mgo.handler);
@@ -130,125 +127,59 @@ namespace MariniImpiantoDataModel
                 }
                 else
                 {
+
                     foreach (IMariniEventHandler mariniEventHandler in this._eventHandlerList)
                     {
-
-                        //Console.WriteLine("\n\tNome classe: {0}", mariniEventHandler.GetType().Name);
-
                         if (mariniEventHandler.GetType().Name == mgo.handler)
                         {
-                            Console.WriteLine("\t\tTROVATA CORRISPONDENZA - handlerInfo.Name {0} == mgo.handler {1}", mariniEventHandler.GetType().Name, mgo.handler);
+                            mgo.PropertyChanged += mariniEventHandler.Handle;
                         }
                     }
+
+                }
+
+            }
+        }
+
+
+
+        //private void _SubscribeEvents()
+        //{
+        //    Console.WriteLine("\n\n\n========== INIZIO Sottoscrizione Eventi ==========");
+            
+        //    foreach (MariniGenericObject mgo in this._pathObjectsDictionary.Values)
+        //    {
+        //        Console.WriteLine("\n\n\t-----> Oggetto Marini {0} chiede la sottoscrizione dell'handler {1}", mgo.path, mgo.handler);
+        //        if (mgo.handler == "NO_HANDLER")
+        //        {
+        //            //Console.WriteLine("\n\tNessun handler richiesto");
+        //            //Logger.DebugFormat("{0} - Nessuna richiesta di handler", mgo.id);
+        //        }
+        //        else
+        //        {
                     
-                }
+        //            Type t_mgo = mgo.GetType();
+        //            EventInfo ei = t_mgo.GetEvent("PropertyChanged");
+        //            foreach (IMariniEventHandler mariniEventHandler in this._eventHandlerList)
+        //            {
 
-            }
-        }
+        //                //Console.WriteLine("\n\tNome classe: {0}", mariniEventHandler.GetType().Name);
+        //                //MethodInfo mi = mariniEventHandler.GetType().GetMethod("Handle");
+        //                if (mariniEventHandler.GetType().Name == mgo.handler)
+        //                {
+        //                    Console.WriteLine("\t\tTROVATA CORRISPONDENZA - handlerInfo.Name {0} == mgo.handler {1}", mariniEventHandler.GetType().Name, mgo.handler);
+        //                    //Delegate dg = Delegate.CreateDelegate(ei.EventHandlerType, mariniEventHandler, mi);
+        //                    Delegate dg = Delegate.CreateDelegate(ei.EventHandlerType, mariniEventHandler, "Handle"); 
+        //                    ei.AddEventHandler(mgo, dg);
+        //                }
+        //            }
+                    
+        //        }
 
-
-
-
-
-
-        // Qua cerco di agganciare un handler caricato dal file XML e presente in _mariniImpiantoEventHandlers
-        // Se l'handler nell'XML trova una corrispondenza nei metodi della classe MariniImpiantoEventHandler
-        // allora viene usato allo scatenarsi dell'evento
-        /// <summary>
-        /// Try to subscribe handlers in _eventsHandlers to the PropertyChanged events raised by some properties
-        /// of the _dataTree
-        /// </summary>
-        /// <param name="mariniImpiantoDataTree"></param>
-        private void _SubscribeEvents(IMariniEventHandler mariniEventHandler)
-        {
-
-            Console.WriteLine("\n\n\n========== INIZIO Sottoscrizione Eventi {0} ==========", mariniEventHandler.ToString());
-            //MethodInfo[] methods = mariniEventHandler.GetType().GetMethods();
-            foreach (MariniGenericObject mgo in this._pathObjectsDictionary.Values)
-            {
-                Console.WriteLine("\n\n\t-----> Oggetto Marini {0} chiede la sottoscrizione dell'handler {1}", mgo.path, mgo.handler);
-                if (mgo.handler == "NO_HANDLER")
-                {
-                    Console.WriteLine("\n\tNessun handler richiesto");
-                    //Logger.DebugFormat("{0} - Nessuna richiesta di handler", mgo.id);
-                }
-                else
-                {
-                    Console.WriteLine("\n\tNome classe: {0}", mariniEventHandler.GetType().Name);
-                }
-                
-            }
+        //    }
+        //}
 
 
-
-
-
-
-
-
-
-
-
-
-            //Console.WriteLine("\n\n\n========== INIZIO Sottoscrizione Eventi {0} ==========", mariniEventHandler.ToString());
-            //MethodInfo[] methods = mariniEventHandler.GetType().GetMethods();
-            //foreach (MariniGenericObject mgo in this._pathObjectsDictionary.Values)
-            //{
-            //    Console.WriteLine("\n\n\t-----> Oggetto Marini {0} chiede la sottoscrizione dell'handler {1}", mgo.path, mgo.handler);
-            //    if (mgo.handler == "NO_HANDLER")
-            //    {
-            //        Console.WriteLine("\n\tNessun handler richiesto");
-            //        //Logger.DebugFormat("{0} - Nessuna richiesta di handler", mgo.id);
-            //    }
-            //    else
-            //    {
-            //        int methodCounter = 0;
-            //        bool bHandlerFound = false;
-            //        foreach (MethodInfo handlerInfo in methods)
-            //        {
-            //            methodCounter++;
-            //            //Console.WriteLine("\n\t\tTentativo {0}: metodo {1}", methodCounter, handlerInfo.Name);
-            //            Type t_mgo = mgo.GetType();
-            //            //foreach (var prop in t_mgo.GetProperties())
-            //            //{
-            //            //    Console.WriteLine("{0}={1}", prop.Name, prop.GetValue(mgo, null));
-            //            //}
-            //            EventInfo ei = t_mgo.GetEvent("PropertyChanged");
-            //            //Console.WriteLine("\t\tEvent name      : {0}", ei.Name);
-            //            MethodInfo mi = null;
-            //            //Console.WriteLine("\t\thandlerInfo.Name: {0}", handlerInfo.Name);
-            //            //Console.WriteLine("\t\tmgo.handler     : {0}", mgo.handler);
-            //            //Logger.DebugFormat("{0} handler cercato: {1} - handler trovato: {2}", mgo.id, handlerInfo.Name, mgo.handler);
-            //            if (handlerInfo.Name == mgo.handler)
-            //            {
-            //                Console.WriteLine("\t\tTROVATA CORRISPONDENZA - handlerInfo.Name {0} == mgo.handler {1}", handlerInfo.Name, mgo.handler);
-            //                bHandlerFound = true;
-            //                //Logger.DebugFormat("{0} - Trovato handler {1}", mgo.id, handlerInfo.Name);
-            //                //MethodInfo mi = _mariniImpiantoEventHandlers.GetType().GetMethod("MyHandler");
-            //                mi = mariniEventsHandler.GetType().GetMethod(handlerInfo.Name);
-            //                //Console.WriteLine("{0}", mi.Name);
-
-            //                //Delegate dg = Delegate.CreateDelegate(typeof(PropertyChangedEventHandler), value, mi);
-            //                Delegate dg = Delegate.CreateDelegate(ei.EventHandlerType, mariniEventsHandler, mi);
-
-            //                ei.AddEventHandler(mgo, dg);
-            //            }
-            //        }
-            //        if (!bHandlerFound)
-            //        {
-            //            //Logger.DebugFormat("{0} - Nessun handler trovato", mgo.id);
-            //            Console.WriteLine("\n\tNessun handler trovato");
-            //        }
-            //    }
-            //    // Qua cerco di agganciare l'handler per tutte le proprieta' con plctag associato, in modo da fare il bind
-            //    // tra il valore del plctag e la proprieta' dell'oggetto che contiene il plctag.
-            //    if (mgo.GetType() == typeof(MariniProperty))
-            //    {
-            //        //mgo.PropertyChanged+=_mariniImpiantoEventHandlers.MyPropertyHandler;
-            //        //(mgo as MariniProperty).MariniPropertyChanged += _mariniImpiantoEventHandlers.MariniPropertyHandler;
-            //    }
-            //}
-        }
 
         /// <summary>
         /// Retrieve a dictionary of MariniGenericObject children with Path key
