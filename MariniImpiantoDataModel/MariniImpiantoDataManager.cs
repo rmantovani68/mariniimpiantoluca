@@ -123,7 +123,6 @@ namespace MariniImpiantoDataModel
                 if (mgo.handler == "NO_HANDLER")
                 {
                     //Console.WriteLine("\n\tNessun handler richiesto");
-                    //Logger.DebugFormat("{0} - Nessuna richiesta di handler", mgo.id);
                 }
                 else
                 {
@@ -140,45 +139,6 @@ namespace MariniImpiantoDataModel
 
             }
         }
-
-
-
-        //private void _SubscribeEvents()
-        //{
-        //    Console.WriteLine("\n\n\n========== INIZIO Sottoscrizione Eventi ==========");
-            
-        //    foreach (MariniGenericObject mgo in this._pathObjectsDictionary.Values)
-        //    {
-        //        Console.WriteLine("\n\n\t-----> Oggetto Marini {0} chiede la sottoscrizione dell'handler {1}", mgo.path, mgo.handler);
-        //        if (mgo.handler == "NO_HANDLER")
-        //        {
-        //            //Console.WriteLine("\n\tNessun handler richiesto");
-        //            //Logger.DebugFormat("{0} - Nessuna richiesta di handler", mgo.id);
-        //        }
-        //        else
-        //        {
-                    
-        //            Type t_mgo = mgo.GetType();
-        //            EventInfo ei = t_mgo.GetEvent("PropertyChanged");
-        //            foreach (IMariniEventHandler mariniEventHandler in this._eventHandlerList)
-        //            {
-
-        //                //Console.WriteLine("\n\tNome classe: {0}", mariniEventHandler.GetType().Name);
-        //                //MethodInfo mi = mariniEventHandler.GetType().GetMethod("Handle");
-        //                if (mariniEventHandler.GetType().Name == mgo.handler)
-        //                {
-        //                    Console.WriteLine("\t\tTROVATA CORRISPONDENZA - handlerInfo.Name {0} == mgo.handler {1}", mariniEventHandler.GetType().Name, mgo.handler);
-        //                    //Delegate dg = Delegate.CreateDelegate(ei.EventHandlerType, mariniEventHandler, mi);
-        //                    Delegate dg = Delegate.CreateDelegate(ei.EventHandlerType, mariniEventHandler, "Handle"); 
-        //                    ei.AddEventHandler(mgo, dg);
-        //                }
-        //            }
-                    
-        //        }
-
-        //    }
-        //}
-
 
 
         /// <summary>

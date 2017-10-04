@@ -22,7 +22,7 @@ namespace MariniImpiantoDataModel
         {
 
             MariniGenericObject mgo;
-            // uso il ToLower percui mettere tutto a minuscolo qui e come si vuole nel file xml
+            /* uso il ToLower percui mettere tutto a minuscolo qui e come si vuole nel file xml */
             switch (node.Name)
             {
                 //case "Impianto":

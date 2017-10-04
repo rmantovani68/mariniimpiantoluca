@@ -45,7 +45,6 @@
     <Compile Include="MariniBindTypeEnum.cs" />
     <Compile Include="MariniGenericObject.cs" />
     <Compile Include="MariniImpiantoDataManager.cs" />
-    <Compile Include="MariniImpiantoFactory.cs" />
     <Compile Include="MariniObjectCreator.cs" />
     <Compile Include="MariniBaseObject.cs" />
     <Compile Include="MariniPersistenceTypeEnum.cs" />
