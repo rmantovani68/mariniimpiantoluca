@@ -329,7 +329,21 @@ namespace MariniImpiantoDataModel
         #endregion
 
         #region Methods
-        
+
+        public override bool Equals(Object o)
+        {
+            MariniGenericObject mgo = o as MariniGenericObject;
+            if (mgo == null)
+                return false;
+            else
+                return path.Equals(mgo.path);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.path.GetHashCode();
+        }
+
         // TODO: attenzione anche ai metodi. Quali metodi e' corretto lasciare all'interno dell'oggetto e
         // quali invece e' bene far gestire a agenti esterni, facendo dell'oggetto un puro modello di dati?
 
@@ -353,32 +367,7 @@ namespace MariniImpiantoDataModel
         }
 
 
-        // TODO: magari da spostare in un eventuale altro oggetto agente che faccia cose
-        // sul data model???
 
-        /*
-        /// <summary>
-        /// Retrieve the MariniPlctag bound to the property prop_name
-        /// </summary>
-        /// <param name="prop_name">the property bound to the plctag</param>
-        /// <returns></returns>
-        public MariniPlctag GetPropertyBoundPlctagObject(string prop_name)
-        {
-
-            //MariniPlctag mplctag = ListaGenericObject
-            //    .Where(mgo => mgo.GetType() == typeof(MariniPlctag))
-            //    .Cast<MariniPlctag>()
-            //    .FirstOrDefault(mp => mp.parent_property_bind == prop_name);
-
-            return ListaGenericObject
-                .Where(mgo => mgo.GetType() == typeof(MariniPlctag))
-                .Cast<MariniPlctag>()
-                .FirstOrDefault(mp => mp.parent_property_bind == prop_name);
-        }
-        */
-
-        // TODO: magari da spostare in un eventuale altro oggetto agente che faccia cose
-        // sul data model???
 
         /*
         /// <summary>

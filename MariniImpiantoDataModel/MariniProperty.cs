@@ -16,7 +16,7 @@ using System.Runtime.CompilerServices;
 namespace MariniImpiantoDataModel
 {
     
-    public class MariniProperty : MariniGenericObject
+    public class MariniProperty : MariniBaseObject
     {
         private string _bind;
         [System.Xml.Serialization.XmlAttribute]
@@ -172,5 +172,7 @@ namespace MariniImpiantoDataModel
         {
             Console.WriteLine("Sono una property id: {0} name: {1} description: {2} path: {3}", id, name, description, path);
         }
+
+       
     }
 }

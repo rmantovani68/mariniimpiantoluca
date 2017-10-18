@@ -102,14 +102,19 @@ namespace MIConsoleTester
                 Console.WriteLine("\n----------> Scatta l'allarme di Motore1");
                 ((MariniProperty)mariniDataManager.GetObjectByPath("Impianto.ZonaPredosaggio.Nastro1.Motore1.Allarme")).value = "true";
                 Console.ReadKey();
+
+                Console.WriteLine("\n----------> Recupero alcune property di MOTORE 3");
+                MariniBaseObject mbo = ((MariniBaseObject)mariniDataManager.GetObjectByPath("Impianto.ZonaPredosaggio.Nastro1.Motore1"));
+                Console.WriteLine("Il valore della proprieta' Ritorno di {0} e' {1}", mbo.path, mbo.GetMariniPropertyFromId("Ritorno").value);
+                Console.WriteLine("Il valore della proprieta' ValoreAmperometro di {0} e' {1}", mbo.path, mbo.GetMariniPropertyFromId("ValoreAmperometro").value);
+                Console.ReadKey();
             }
             catch (Exception e)
             {
                 Console.WriteLine("MariniImpiantoFactory: Exception caught - {0}", e);
             }
             
-
-            Console.ReadLine();        
+                              
 
             Logger.Info("<<<<<<<<<< TEST FINISHED >>>>>>>>>>\n\n\n");
         }

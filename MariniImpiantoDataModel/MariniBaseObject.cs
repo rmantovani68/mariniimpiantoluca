@@ -53,6 +53,64 @@ namespace MariniImpiantoDataModel
         {
         }
 
+        // TODO: magari da spostare in un eventuale altro oggetto agente che faccia cose
+        // sul data model???
+
+        
+        /// <summary>
+        /// Retrieve the MariniProperty bound to the property prop_id
+        /// </summary>
+        /// <param name="prop_id">the property bound to the prop_id</param>
+        /// <returns></returns>
+        public MariniProperty GetMariniPropertyFromId(string prop_id)
+        {
+
+            return ChildList
+                .Where(mgo => mgo.GetType() == typeof(MariniProperty))
+                .Cast<MariniProperty>()
+                .FirstOrDefault(mp => mp.id == prop_id);
+        }
+
+        /// <summary>
+        /// Retrieve the MariniProperty bound to the bind item
+        /// </summary>
+        /// <param name="bind">the property bound to the bind item</param>
+        /// <returns></returns>
+        public MariniProperty GetMariniPropertyFromBoundItem(string bind)
+        {
+
+            return ChildList
+                .Where(mgo => mgo.GetType() == typeof(MariniProperty))
+                .Cast<MariniProperty>()
+                .FirstOrDefault(mp => mp.bind == bind);
+        }
+        
+
+        /*
+        /// <summary>
+        /// Retrieve the plctag bound to the property prop_name
+        /// </summary>
+        /// <param name="prop_name">the property bound to the plctag</param>
+        /// <returns></returns>
+        public string GetMariniPropertyFromPlcTag(string prop_name)
+        {
+
+            //MariniPlctag mplctag = ListaGenericObject
+            //    .Where(mgo => mgo.GetType() == typeof(MariniPlctag))
+            //    .Cast<MariniPlctag>()
+            //    .FirstOrDefault(mp => mp.parent_property_bind == prop_name);
+
+            return ListaGenericObject
+                .Where(mgo => mgo.GetType() == typeof(MariniPlctag))
+                .Cast<MariniPlctag>()
+                .FirstOrDefault(mp => mp.parent_property_bind == prop_name);
+        }
+        */
+        // TODO: magari da spostare in un eventuale altro oggetto agente che faccia cose
+        // sul data model???
+
+
+
         public override void ToPlainText()
         {
             Console.WriteLine("Sono un oggetto base id: {0} name: {1} description: {2} path: {3}", id, name, description, path);
