@@ -84,32 +84,6 @@ namespace MariniImpiantoDataModel
                 .Cast<MariniProperty>()
                 .FirstOrDefault(mp => mp.bind == bind);
         }
-        
-
-        /*
-        /// <summary>
-        /// Retrieve the plctag bound to the property prop_name
-        /// </summary>
-        /// <param name="prop_name">the property bound to the plctag</param>
-        /// <returns></returns>
-        public string GetMariniPropertyFromPlcTag(string prop_name)
-        {
-
-            //MariniPlctag mplctag = ListaGenericObject
-            //    .Where(mgo => mgo.GetType() == typeof(MariniPlctag))
-            //    .Cast<MariniPlctag>()
-            //    .FirstOrDefault(mp => mp.parent_property_bind == prop_name);
-
-            return ListaGenericObject
-                .Where(mgo => mgo.GetType() == typeof(MariniPlctag))
-                .Cast<MariniPlctag>()
-                .FirstOrDefault(mp => mp.parent_property_bind == prop_name);
-        }
-        */
-        // TODO: magari da spostare in un eventuale altro oggetto agente che faccia cose
-        // sul data model???
-
-
 
         public override void ToPlainText()
         {

@@ -61,10 +61,6 @@ namespace MIConsoleTester
             {
                 Logger.Info("MariniImpiantoDataManager - Inizio Creazione");
 
-                
-
-
-
                 MariniImpiantoDataManager mariniDataManager = new MariniImpiantoDataManager(
                     XMLfilename, 
                     new MariniStandardXmlSerializer(), new List<IMariniEventHandler>(

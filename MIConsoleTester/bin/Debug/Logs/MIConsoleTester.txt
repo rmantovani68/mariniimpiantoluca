@@ -904,3 +904,14 @@ INFO  2017-10-17 15:51:53,899 [10   ] MIConsoleTester.Program                  -
 
 
 
+INFO  2017-10-19 12:02:07,408 [9    ] MIConsoleTester.Program                  - <<<<<<<<<< TEST STARTED >>>>>>>>>>
+
+INFO  2017-10-19 12:02:07,438 [9    ] MIConsoleTester.Program                  - MariniImpiantoDataManager - Inizio Creazione
+INFO  2017-10-19 12:02:07,815 [9    ] MIConsoleTester.Program                  - MariniImpiantoDataManager - Fine Creazione
+INFO  2017-10-19 12:02:11,303 [9    ] MIConsoleTester.Program                  - MariniImpiantoDataManager - Inizio ToPlainTextRecursive()
+INFO  2017-10-19 12:02:11,475 [9    ] MIConsoleTester.Program                  - MariniImpiantoDataManager - Fine ToPlainTextRecursive()
+
+INFO  2017-10-19 12:02:14,364 [9    ] MIConsoleTester.Program                  - <<<<<<<<<< TEST FINISHED >>>>>>>>>>
+
+
+
